@@ -32,7 +32,7 @@ module GoogleCloudVision
         },
         features: {
           type: image[:detection],
-          maxResults: 1
+          maxResults: image[:maxResults] || 1
         }
       }
     end

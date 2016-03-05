@@ -19,13 +19,13 @@ Or install it yourself as:
     $ gem install google_cloud_vision
 
 ## Usage
-The three types of detecttion done by the Google Cloud Vision API are Label Detection, which tries to identify what is in the image, Face Detection, which detects the position and sentiment of faces, and Text Detection which will return the text found in the photo. You can pass in an array of images and the type of detection you want like so:
+The three types of detecttion done by the Google Cloud Vision API are Label Detection, which tries to identify what is in the image, Face Detection, which detects the position and sentiment of faces, and Text Detection which will return the text found in the photo. You can pass in an array of images and the type of detection you want like so. you cal also specify the number of results per image with the optional maxResults atribute:
 
 ```
 puts GoogleCloudVision::Classifier.new('[YOUR_API_KEY]',
   [
-    {image: './text.png', detection: 'TEXT_DETECTION'},
-    {image: './sushi.jpg', detection: 'LABEL_DETECTION'}
+    {image: './text.png', detection: 'TEXT_DETECTION', maxResults: 10},
+    {image: './sushi.jpg', detection: 'LABEL_DETECTION', maxResults: 10}
   ]).response
 ```
 
