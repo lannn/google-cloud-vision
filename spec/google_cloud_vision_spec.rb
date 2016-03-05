@@ -3,8 +3,8 @@ require 'spec_helper'
 describe GoogleCloudVision do
   let(:images) do
     [
-      { image: '../text.png', detection: 'TEXT_DETECTION' },
-      { image: '../sushi.jpg', detection: 'LABEL_DETECTION' }
+      { image: '../text.png', detection: 'TEXT_DETECTION', max_results: 2 },
+      { image: '../sushi.jpg', detection: 'LABEL_DETECTION', max_results: 1 }
     ]
   end
 
@@ -18,6 +18,11 @@ describe GoogleCloudVision do
     it 'includes type of detection' do
       detection_type = gcv.send(:request, images.first)[:features][:type]
       expect(detection_type).to eq('TEXT_DETECTION')
+    end
+
+    it 'includes max results' do
+      max_results = gcv.send(:request, images.first)[:features][:maxResults]
+      expect(max_results).to eq(2)
     end
   end
 
