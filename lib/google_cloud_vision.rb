@@ -2,6 +2,7 @@ require 'google_cloud_vision/version'
 require 'base64'
 require 'net/http'
 require 'json'
+require "open-uri"
 
 # simple wrapper for Google Cloud Vision API
 module GoogleCloudVision
@@ -28,7 +29,7 @@ module GoogleCloudVision
     def request(image)
       {
         image: {
-          content: Base64.encode64(File.open(image[:image], 'rb').read)
+          content: Base64.encode64(open(image[:image]).read)
         },
         features: {
           type: image[:detection],
